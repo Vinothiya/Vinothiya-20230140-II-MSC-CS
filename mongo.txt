@@ -1,0 +1,249 @@
+C:\Users\kaviy\Downloads\mongosh-2.3.0-win32-x64\mongosh-2.3.0-win32-x64\bin>mongosh
+
+test> login_db
+test> use login_db
+switched to db login_db
+login_db> db.users_db.find()
+
+
+INSERT ONE:
+
+login_db> db.users_db.insertOne({id:101,name:"Vinothiya",password:"abcdef"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('66da5eaf314e4ffe622710bc')
+}
+login_db> db.users_db.find()
+[
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  }
+]
+
+
+INSERT MANY:
+
+login_db.users_db.insertMany([{id:101,name:"Vinothiya",password:"abcdef"},{id:102,name:"kaviya",password:"qwerty"},{id:103,name:"sandhiya",password:"asdfgh"},{id:104,name:"durga",password:"ghjklm"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('66da6137314e4ffe622710bd'),
+    '1': ObjectId('66da6137314e4ffe622710be'),
+    '2': ObjectId('66da6137314e4ffe622710bf'),
+    '3': ObjectId('66da6137314e4ffe622710c0')
+  }
+}
+
+login_db> db.users_db.find()
+[
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  },
+  
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kaviya',
+    password: 'qwerty'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710bf'),
+    id: 103,
+    name: 'sandhiya',
+    password: 'asdfgh'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  }
+]
+
+UPDATE ONE:
+
+login_db> db.users_db.updateOne({name:"vinothiya"},{$set:{name:"vanitha"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+login_db> db.users_db.find()
+[
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'vanitha',
+    password: 'abcdef'
+  },
+  
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kaviya',
+    password: 'qwerty'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710bf'),
+    id: 103,
+    name: 'sandhiya',
+    password: 'asdfgh'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  }
+]
+
+UPDATE MANY:
+
+login_db> db.users_db.updateMany({name:"vinothiya"},{$set:{name:"vanitha",id:101}},{name:"kaviya"},{$set:"kumar",id:102})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+login_db> db.users_db.find()
+[
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'vanitha',
+    password: 'abcdef'
+  },
+  
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kumar',
+    password: 'qwerty'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710bf'),
+    id: 103,
+    name: 'sandhiya',
+    password: 'asdfgh'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  }
+]
+
+
+DELETE ONE:
+
+login_db> db.users.deleteOne({name:"vinothiya"},{id:101})
+{ acknowledged: true, deletedCount: 0 }
+login_db> db.users_db.find()
+[
+   
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kaviya',
+    password: 'qwerty'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710bf'),
+    id: 103,
+    name: 'sandhiya',
+    password: 'asdfgh'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  }
+]
+
+DELETE MANY:
+
+login_db> db.users.deletetMany({name:"sandhiya"},{name:"kaviya"})
+
+[
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  },
+  
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  }
+]
+
+
+SORT:
+
+login_db> db.users_db.find().sort({name:-1})
+[
+  {
+    _id: ObjectId('66da6137314e4ffe622710bf'),
+    id: 103,
+    name: 'sandhiya',
+    password: 'asdfgh'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kaviya',
+    password: 'qwerty'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710c0'),
+    id: 104,
+    name: 'durga',
+    password: 'ghjklm'
+  },
+  {
+    _id: ObjectId('66da5eaf314e4ffe622710bc'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710bd'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  }
+]
+
+LIMIT:
+
+login_db> db.users_db.find().sort({name:-1}),limit(2)
+
+[
+    {
+    _id: ObjectId('66da6137314e4ffe622710bd'),
+    id: 101,
+    name: 'Vinothiya',
+    password: 'abcdef'
+  },
+  {
+    _id: ObjectId('66da6137314e4ffe622710be'),
+    id: 102,
+    name: 'kaviya',
+    password: 'qwerty'
+  }
+]

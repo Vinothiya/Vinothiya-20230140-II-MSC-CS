@@ -1,0 +1,92 @@
+                       SQL DATABASE 
+
+C:\Users\God\Downloads\sqlite-tools-win-x64-3460100 (1)>sqlite3 employee.db
+SQLite version 3.46.1 2024-08-13 09:16:08 (UTF-16 console I/O)
+
+CREATE QUERY:
+
+sqlite> create table employers_details(id integer,name varchar(15),age integer,city varchar(15),salary integer);
+
+INSERT QUERY:
+
+sqlite> insert into employers_details(id,name,age,city,salary)values(1001,'vino',20,'bangalore',70000);
+sqlite> insert into employers_details(id,name,age,city,salary)values(1002,'durga',20,'hyderabed',75000);
+sqlite> insert into employers_details(id,name,age,city,salary)values(1003,'kaviya',21,'delhi',75000);
+sqlite> insert into employers_details(id,name,age,city,salary)values(1004,'nesha',21,'chennai',78000);
+sqlite> insert into employers_details(id,name,age,city,salary)values(1005,'dharshini',22,'kolkata',80000);
+sqlite> insert into employers_details(id,name,age,city,salary)values(1006,'dandhiya',19,'pune',85000);
+
+SELECT QUERY:
+
+sqlite> select * from employers_details;
+1001|vino|20|bangalore|70000
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1005|dharshini|22|kolkata|80000
+1006|dandhiya|19|pune|85000
+
+UPDATE QUERY:
+
+sqlite> update employers_details set name='sandhiya' where id=1006;
+sqlite> select * from employers_details;
+1001|vino|20|bangalore|70000
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1005|dharshini|22|kolkata|80000
+1006|sandhiya|19|pune|85000
+
+DELETE QUERY:
+
+sqlite> delete from employers_details where id=1001;
+sqlite> select * from employers_details;
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1005|dharshini|22|kolkata|80000
+1006|sandhiya|19|pune|85000
+
+SQL Greaterthan QUERY:
+
+sqlite> select id,name,age,city,salary from employers_details where salary>85000;
+sqlite> select * from empoyers_details;
+sqlite> select * from employers_details;
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1005|dharshini|22|kolkata|80000
+1006|sandhiya|19|pune|85000
+
+SQL Lessthan QUERY:
+
+sqlite> select id,name,age,city,salary from employers_details where salary<85000;
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1005|dharshini|22|kolkata|80000
+
+LIMIT QUERY:
+
+sqlite> select * from employers_details Limit 2;
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+
+
+SQL ASC QUERY:
+
+sqlite> select * from employers_details ORDER BY name Asc;
+1005|dharshini|22|kolkata|80000
+1002|durga|20|hyderabed|75000
+1003|kaviya|21|delhi|75000
+1004|nesha|21|chennai|78000
+1006|sandhiya|19|pune|85000
+
+SQL DESC QUERY:
+
+sqlite> select * from employers_details ORDER BY name desc;
+1006|sandhiya|19|pune|85000
+1004|nesha|21|chennai|78000
+1003|kaviya|21|delhi|75000
+1002|durga|20|hyderabed|75000
+1005|dharshini|22|kolkata|80000
